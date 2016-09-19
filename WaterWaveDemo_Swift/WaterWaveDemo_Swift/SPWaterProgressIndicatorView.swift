@@ -21,14 +21,12 @@ class SPWaterProgressIndicatorView: UIView {
     }
     
     var completionInPercent: Int {
-        willSet {
-            if newValue > 100 {
+        didSet {
+            if completionInPercent > 100 {
                 completionInPercent = 100
-            } else if newValue < 0 {
+            } else if completionInPercent < 0 {
                 completionInPercent = 0
             }
-        }
-        didSet {
             self.textLayer.string = String(format: "%zd %%", self.completionInPercent)
             self.setNeedsDisplay()
         }
@@ -91,13 +89,12 @@ class SPWaterProgressIndicatorView: UIView {
     
     override var frame: CGRect {
         willSet {
-            if newValue.width != newValue.height {
-                let side = min(newValue.width, newValue.height)
-                frame = CGRect.init(x: newValue.origin.x, y: newValue.origin.y, width: side, height: side)
-            }
         }
         didSet {
-            print("\(NSStringFromCGRect(frame))")
+            if frame.width != frame.height {
+                let side = min(frame.width, frame.height)
+                frame = CGRect.init(x: frame.origin.x, y: frame.origin.y, width: side, height: side)
+            }
         }
     }
     
