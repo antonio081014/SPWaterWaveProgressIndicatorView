@@ -14,8 +14,10 @@ This is custom subclass of UIView, which indicates the progress of task in perce
 - Add SPWaterProgressIndicatorView.hm files to the project.
 - There are two ways to use this class:
   - Specify a `UIView`'s class as SPWaterProgressIndicatorView in IB.
-  - Using `alloc` | `initWithFrame:` to create and initialize an instance, then add it to a `UIView`.
+  - Using `alloc` | `initWithFrame:` (Objective-C) to create and initialize an instance, then add it to a `UIView`.
+  - Using `UIView` | `init(frame: CGRect)` (Swift) to create and initialize an instance, then add it to a `UIView`.
 
+__Objective-C__
 ```
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,6 +25,17 @@ This is custom subclass of UIView, which indicates the progress of task in perce
     self.waterView.center = self.view.center;
     [self.view addSubview:self.waterView];
     
+}
+```
+
+__Swift__
+```
+override func viewDidLoad() {
+    super.viewDidLoad()
+        
+    self.wave = SPWaterProgressIndicatorView(frame: self.view.bounds)
+    self.wave.center = self.view.center;
+    self.view.addSubview(self.wave)        
 }
 ```
 
