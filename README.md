@@ -2,7 +2,7 @@
 This is custom subclass of UIView, which indicates the progress of task in percent.
 
 ## What it looks like?
-![Presentation](https://raw.githubusercontent.com/286s/Custom-View-and-Control/master/SPWaterProgressIndicatorView/3.gif)
+![Presentation](https://raw.githubusercontent.com/antonio081014/SPWaterWaveProgressIndicatorView/master/3.gif)
 ## Directory
 - **SPWaterProgressIndicatorView_README.md**
 - **SPWaterProgressIndicatorView.hm**
