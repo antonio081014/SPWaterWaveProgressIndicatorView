@@ -21,14 +21,12 @@ class SPWaterProgressIndicatorView: UIView {
     }
     
     var completionInPercent: Int {
-        willSet {
-            if newValue > 100 {
+        didSet {
+            if completionInPercent > 100 {
                 completionInPercent = 100
-            } else if newValue < 0 {
+            } else if completionInPercent < 0 {
                 completionInPercent = 0
             }
-        }
-        didSet {
             self.textLayer.string = String(format: "%zd %%", self.completionInPercent)
             self.setNeedsDisplay()
         }
@@ -89,15 +87,15 @@ class SPWaterProgressIndicatorView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /**
+     * Ensure the size is always square.
+     */
     override var frame: CGRect {
-        willSet {
-            if newValue.width != newValue.height {
-                let side = min(newValue.width, newValue.height)
-                frame = CGRect.init(x: newValue.origin.x, y: newValue.origin.y, width: side, height: side)
-            }
-        }
         didSet {
-            print("\(NSStringFromCGRect(frame))")
+            if frame.width != frame.height {
+                let side = min(frame.width, frame.height)
+                frame = CGRect.init(x: frame.origin.x, y: frame.origin.y, width: side, height: side)
+            }
         }
     }
     
@@ -112,11 +110,46 @@ class SPWaterProgressIndicatorView: UIView {
     let kDefaultFontSize: CGFloat = 20.0
     let kDefaultMinimumFontSize: CGFloat = 12.0
 
+    /**
+     * Line width used for the proeminent wave
+     * 
+     * Default: 3.0f
+     */
     private var primaryWaveLineWidth: CGFloat
+    
+    /**
+     * The amplitude that is used when the incoming amplitude is near zero.
+     * Setting a value greater 0 provides a more vivid visualization.
+     *
+     * Default: 0.01
+     */
     private var idleAmplitude: CGFloat
+    
+    /**
+     * The frequency of the sinus wave. The higher the value, the more sinus wave peaks you will have.
+     * 
+     * Default: 1.5
+     */
     private var frequency: CGFloat
+    
+    /**
+     * The current amplitude
+     */
     private var amplitude: CGFloat
+    
+    /**
+     * The lines are joined stepwise, the more dense you draw, the more CPU power is used.
+     *
+     * Default: 5
+     */
     private var density: CGFloat
+    
+    /**
+     * The phase shift that will be applied with each level setting
+     * Change this to modify the animation speed or direction
+     *
+     * Default: -0.15
+     */
     private var phaseShift: CGFloat
     private var phase: CGFloat
     
@@ -136,6 +169,9 @@ class SPWaterProgressIndicatorView: UIView {
         self.update()
     }
     
+    /**
+     * With phase shifts, the animation will prevail.
+     */
     private func update() {
         self.phase += self.phaseShift
         self.setNeedsDisplay()
@@ -184,6 +220,10 @@ class SPWaterProgressIndicatorView: UIView {
         context?.strokePath()
     }
     
+    
+    /**
+     * Ensure nothing would happen when user touch out of the mask(circle)
+     */
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         if let layer = self.layer.mask as? CAShapeLayer {
             if UIBezierPath.init(cgPath: layer.path!).contains(point) {
