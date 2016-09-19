@@ -6,7 +6,9 @@ This is custom subclass of UIView, which indicates the progress of task in perce
 ## Directory
 - **SPWaterProgressIndicatorView_README.md**
 - **SPWaterProgressIndicatorView.hm**
-- **WaterWaveDemo** project demostrates how to use this class.
+- **SPWaterProgressIndicatorView.swift**
+- **WaterWaveDemo** project demostrates how to use this class in Objective-C Project.
+- **WaterWaveDemo_Swift** project demostrates how to use this class in Swift Project.
 
 ## How to user it?
 - Add SPWaterProgressIndicatorView.hm files to the project.
