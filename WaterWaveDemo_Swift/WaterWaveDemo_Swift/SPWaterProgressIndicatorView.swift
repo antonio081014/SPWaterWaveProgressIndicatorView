@@ -115,7 +115,7 @@ class SPWaterProgressIndicatorView: UIView {
      * 
      * Default: 3.0f
      */
-    private var primaryWaveLineWidth: CGFloat
+    fileprivate var primaryWaveLineWidth: CGFloat
     
     /**
      * The amplitude that is used when the incoming amplitude is near zero.
@@ -123,26 +123,26 @@ class SPWaterProgressIndicatorView: UIView {
      *
      * Default: 0.01
      */
-    private var idleAmplitude: CGFloat
+    fileprivate var idleAmplitude: CGFloat
     
     /**
      * The frequency of the sinus wave. The higher the value, the more sinus wave peaks you will have.
      * 
      * Default: 1.5
      */
-    private var frequency: CGFloat
+    fileprivate var frequency: CGFloat
     
     /**
      * The current amplitude
      */
-    private var amplitude: CGFloat
+    fileprivate var amplitude: CGFloat
     
     /**
      * The lines are joined stepwise, the more dense you draw, the more CPU power is used.
      *
      * Default: 5
      */
-    private var density: CGFloat
+    fileprivate var density: CGFloat
     
     /**
      * The phase shift that will be applied with each level setting
@@ -150,11 +150,11 @@ class SPWaterProgressIndicatorView: UIView {
      *
      * Default: -0.15
      */
-    private var phaseShift: CGFloat
-    private var phase: CGFloat
+    fileprivate var phaseShift: CGFloat
+    fileprivate var phase: CGFloat
     
-    private var displaylink: CADisplayLink?
-    private lazy var textLayer: CATextLayer = {
+    fileprivate var displaylink: CADisplayLink?
+    fileprivate lazy var textLayer: CATextLayer = {
         let textlayer = CATextLayer.init()
         textlayer.bounds = CGRect(x: 0, y: 0, width: self.bounds.width, height: min(self.bounds.height, 40.0))
         textlayer.position = self.center
@@ -172,7 +172,7 @@ class SPWaterProgressIndicatorView: UIView {
     /**
      * With phase shifts, the animation will prevail.
      */
-    private func update() {
+    fileprivate func update() {
         self.phase += self.phaseShift
         self.setNeedsDisplay()
     }
