@@ -35,11 +35,11 @@ class SPWaterProgressIndicatorView: UIView {
     
     func startAnimation() {
         self.displaylink = CADisplayLink(target: self, selector: #selector(SPWaterProgressIndicatorView.updateMeters))
-        self.displaylink?.add(to: RunLoop.main, forMode: .commonModes)
+        self.displaylink?.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
     }
     
     func stopAnimation() {
-        self.displaylink?.remove(from: .current, forMode: .commonModes)
+        self.displaylink?.remove(from: RunLoop.current, forMode: RunLoop.Mode.common)
         self.displaylink?.invalidate()
         self.displaylink = nil
     }
@@ -109,10 +109,10 @@ class SPWaterProgressIndicatorView: UIView {
     let kDefaultPrimaryLineWidth: CGFloat = 3.0
     let kDefaultFontSize: CGFloat = 20.0
     let kDefaultMinimumFontSize: CGFloat = 12.0
-
+    
     /**
      * Line width used for the proeminent wave
-     * 
+     *
      * Default: 3.0f
      */
     fileprivate var primaryWaveLineWidth: CGFloat
@@ -127,7 +127,7 @@ class SPWaterProgressIndicatorView: UIView {
     
     /**
      * The frequency of the sinus wave. The higher the value, the more sinus wave peaks you will have.
-     * 
+     *
      * Default: 1.5
      */
     fileprivate var frequency: CGFloat
@@ -158,14 +158,14 @@ class SPWaterProgressIndicatorView: UIView {
         let textlayer = CATextLayer.init()
         textlayer.bounds = CGRect(x: 0, y: 0, width: self.bounds.width, height: min(self.bounds.height, 40.0))
         textlayer.position = self.center
-        textlayer.alignmentMode = kCAAlignmentCenter
+        textlayer.alignmentMode = CATextLayerAlignmentMode.center
         textlayer.string = String.init(format: "%zd %%", self.completionInPercent)
         textlayer.fontSize = CGFloat(self.fontSize)
         textlayer.foregroundColor = UIColor.gray.cgColor
         return textlayer
     }()
     
-    func updateMeters() {
+    @objc func updateMeters() {
         self.update()
     }
     
