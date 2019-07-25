@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-     func updatePercent(_ gesture: UIPanGestureRecognizer) {
+    @objc func updatePercent(_ gesture: UIPanGestureRecognizer) {
         if gesture.state == .changed || gesture.state == .ended {
             let location = gesture.location(in: self.wave)
             let percent = 100 - Int(100.0 * location.y / self.wave.bounds.height);
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         }
     }
 
-     func updateAnimation() {
+    @objc func updateAnimation() {
         self.isAnimating = !self.isAnimating
     }
 }

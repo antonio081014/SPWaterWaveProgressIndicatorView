@@ -203,7 +203,7 @@ class SPWaterProgressIndicatorView: UIView {
             // We use a parable to scale the sinus wave, that has its peak in the middle of the view.
             let scaling = -pow(1 / mid * (x - mid), 2) + 1
             
-            let y = scaling * maxAmplitude * self.amplitude * sin(CGFloat(2.0 * M_PI) * (x / width) * self.frequency + self.phase) + self.bounds.height * CGFloat(100 - self.completionInPercent) / CGFloat(100)
+            let y = scaling * maxAmplitude * self.amplitude * sin(CGFloat(2.0 * CGFloat.pi) * (x / width) * self.frequency + self.phase) + self.bounds.height * CGFloat(100 - self.completionInPercent) / CGFloat(100)
             
             if (x == 0) {
                 context?.move(to: CGPoint.init(x: x, y: y))
