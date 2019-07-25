@@ -23,6 +23,7 @@ __Important to Know__
 
 __Objective-C__
 ```
+// Initialization.
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.waterView = [[SPWaterProgressIndicatorView alloc] initWithFrame:self.view.bounds];
@@ -30,10 +31,15 @@ __Objective-C__
     [self.view addSubview:self.waterView];
     
 }
+
+// Update percent
+[self.waterView updateWithPercentCompletion:percent];
 ```
+> [Detailed Example in Objc.](https://github.com/antonio081014/SPWaterWaveProgressIndicatorView/blob/master/WaterWaveDemo/WaterWaveDemo/ViewController.m)
 
 __Swift__
 ```
+// Initialization
 override func viewDidLoad() {
     super.viewDidLoad()
         
@@ -41,7 +47,11 @@ override func viewDidLoad() {
     self.wave.center = self.view.center;
     self.view.addSubview(self.wave)        
 }
+
+// Update percent
+self.wave.completionInPercent = percent
 ```
+> [Detailed Example in Swift.](https://github.com/antonio081014/SPWaterWaveProgressIndicatorView/blob/master/WaterWaveDemo_Swift/WaterWaveDemo_Swift/ViewController.swift)
 
 ## Version
 1.0
