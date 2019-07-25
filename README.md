@@ -10,12 +10,16 @@ This is custom subclass of UIView, which indicates the progress of task in perce
 - **WaterWaveDemo** project demostrates how to use this class in Objective-C Project.
 - **WaterWaveDemo_Swift** project demostrates how to use this class in Swift Project.
 
-## How to user it?
+## How to use it?
 - Add SPWaterProgressIndicatorView.hm files to the project.
 - There are two ways to use this class:
   - Specify a `UIView`'s class as SPWaterProgressIndicatorView in IB.
   - Using `alloc` | `initWithFrame:` (Objective-C) to create and initialize an instance, then add it to a `UIView`.
   - Using `UIView` | `init(frame: CGRect)` (Swift) to create and initialize an instance, then add it to a `UIView`.
+
+__Important to Know__
+> 1. Init with `init(frame: CGRect)`
+> 2. No matter what CGRect being passed to initialize it, the view will be trunked to be a square.
 
 __Objective-C__
 ```
